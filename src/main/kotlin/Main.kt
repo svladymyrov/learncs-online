@@ -1,3 +1,5 @@
+import java.lang.IllegalArgumentException
+
 /**
  * FUNCTIONS
  * */
@@ -94,10 +96,31 @@ fun catchupGrading(grades: DoubleArray): Int {
 
 
 /**
+ * STRINGS
+ * */
+fun backAround(input: String): String {
+  return "${input[input.lastIndex]}$input${input[input.lastIndex]}"
+}
+
+fun emailToNetId(email: String): String {
+  val eList = email.split("@")
+  if (eList[1] != "illinois.edu") {
+    throw IllegalArgumentException("Unsupported email domain")
+  }
+  return eList[0]
+}
+
+fun endsLy(s: String): Boolean {
+  return s.length > 1 && s.endsWith("ly")
+}
+
+/**
  * MAIN
  * */
 fun main(): Unit {
   println(midThree(intArrayOf(1,2,3,4,5)).joinToString(" "))
   println(specialEleven(34))
   println(catchupGrading(doubleArrayOf(5.0, 3.0, 4.5)))
+  println(backAround("qwerty"))
+  println(emailToNetId("student@illinois.edu"))
 }
